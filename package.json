@@ -1,0 +1,19 @@
+{
+  "name": "network-manager",
+  "version": "1.0.0",
+  "description": "A highly customizable, robust, and production-ready HTTP request client wrapper built on top of **Axios** and **TypeScript**.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "axios": "^1.16.1"
+  }
+}
