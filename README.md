@@ -172,6 +172,43 @@ backendClient.setTokens({
 
 ---
 
+### 3. Production Client Setup Example
+
+Here is a practical, production-ready instantiation example showing custom auth failures, log redirection, dynamic token refresh management, and modular paths imports:
+
+```typescript
+import { NetworkManager } from "./network-manager";
+
+
+const client = new NetworkManager({
+    baseURL: 'https://example_api_base_url',
+    timeout: 10_000,
+    refreshEndpoint: '/example_refresh_token_endpoint',
+    maxRetries: 3,
+    retryDelay: 1_000,
+    enableLogging: true,
+
+    onAuthFailure: () => {
+        console.error("🔐 Session expired! Redirecting to login page...");
+        // Example actions for client-side router:
+        // window.location.href = "/auth/login";
+        // router.push("/auth/login");
+        // localStorage.removeItem(accessTokenTitle);
+        // localStorage.clear();
+    },
+
+    onTokenRefreshed: (tokens) => {
+        console.log("✅ Token successfully renewed:", tokens.accessToken.slice(0, 20) + "...");
+        // Save new access token to client storage
+        localStorage.setItem(accessTokenTitle, tokens.accessToken);
+    },
+});
+
+export default client;
+```
+
+---
+
 ## ⚙️ Configuration Options (`NetworkManagerConfig`)
 
 When instantiating `NetworkManager`, you can pass the following configuration:
